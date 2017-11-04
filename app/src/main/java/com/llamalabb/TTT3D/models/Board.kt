@@ -5,15 +5,18 @@ package com.llamalabb.TTT3D.models
  */
 data class Board(val boardSize: Int) {
 
-   var board = Array(boardSize, {Array(boardSize, {Cell()})})
+    lateinit var board: Array<Array<Cell?>>
 
 
     fun createBoard(){
-        for(i in 0..board.size -1){
-            var boardRow = Array(boardSize, {Cell()})
+        for(i in 0..boardSize -1){
+            var boardRow = Array<Cell?>(boardSize, {null})
             for(j in 0..boardRow.size -1){
-                boardRow[j] = Cell()
+                boardRow[j] = Cell(Position(i, j))
             }
+
+
+
             board[i] = boardRow
         }
     }
