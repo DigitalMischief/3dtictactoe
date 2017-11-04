@@ -1,8 +1,8 @@
-package com.llamalabb.a3dtictactoe.tictactoe
+package com.llamalabb.TTT3D.tictactoe
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.llamalabb.a3dtictactoe.R
+import com.llamalabb.TTT3D.R
 
 class TicTacToeActivity : AppCompatActivity() {
 

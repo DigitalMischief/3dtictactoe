@@ -1,4 +1,4 @@
-package com.llamalabb.a3dtictactoe
+package com.llamalabb.TTT3D
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

@@ -1,4 +1,4 @@
-package com.llamalabb.a3dtictactoe
+package com.llamalabb.TTT3D
 
 import org.junit.Test
 

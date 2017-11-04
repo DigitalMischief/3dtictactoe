@@ -1,4 +1,4 @@
-package com.llamalabb.a3dtictactoe.tictactoe
+package com.llamalabb.TTT3D.tictactoe
 
 /**
  * Created by andy on 11/4/17.
