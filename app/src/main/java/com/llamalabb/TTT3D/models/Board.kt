@@ -13,6 +13,7 @@ data class Board(var columnSize: Int = 3, var rowSize: Int = 3) {
 
     fun create(){
         cellMatrix = ArrayList()
+
         for(i in 0 until columnSize){
             val boardRow = ArrayList<Cell>()
             (0 until rowSize).mapTo(boardRow) {
@@ -29,14 +30,6 @@ data class Board(var columnSize: Int = 3, var rowSize: Int = 3) {
         } catch(e: ArrayIndexOutOfBoundsException){
             throw Exception("Off the board")
         }
-
-
-    }
-
-    fun isCellAvailable(cell: Cell) : Boolean{
-        if( cell == null ) //todo: change to check enum
-            return true
-        return false
     }
 
     fun getCellCount() = columnSize*rowSize

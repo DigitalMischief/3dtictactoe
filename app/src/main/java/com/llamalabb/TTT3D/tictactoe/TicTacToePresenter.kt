@@ -2,7 +2,9 @@ package com.llamalabb.TTT3D.tictactoe
 
 import com.llamalabb.TTT3D.GameManager
 import com.llamalabb.TTT3D.models.Board
+
 import com.llamalabb.TTT3D.models.CellType
+
 import com.llamalabb.TTT3D.models.Position
 
 /**
@@ -32,6 +34,7 @@ class TicTacToePresenter(var view: TicTacToeContract.View) : TicTacToeContract.P
 
     override fun handleClickOnIndex(index: Int) {
 
+
         val position = convertIndexToPosition(index)
 
          board.getCell(position)?.let{
@@ -42,6 +45,18 @@ class TicTacToePresenter(var view: TicTacToeContract.View) : TicTacToeContract.P
                  view.showPlayerFault()
              }
          }
+
+    }
+
+    private fun runTest() {
+        val testBoard = Board()
+        val manager = GameManager(testBoard)
+        val position = Position(1, 1)
+        val ourCell = testBoard.getCell(position)
+        val ourType = ourCell.type
+        ourType?.let {
+            manager.getAlliesInSearchArea(position, ourType)
+        }
     }
 
     private fun convertIndexToPosition(index: Int) : Position{
