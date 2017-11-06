@@ -12,19 +12,20 @@ class GameManager(private val board: Board) {
     private val searchDistance = 1
     private val TAG = this.javaClass.simpleName
 
-    private fun getAlliesInSearchArea(position: Position, type: CellType) {
+    fun getAlliesInSearchArea(position: Position, type: CellType) {
         getNeighbors(position)
                 .filter {it.type == type}
                 .forEach{
-                    Log.d(TAG, "Ally found at position: $position")
+                    val direction = getDirectionOfPositionFromPosition(position, it.position)
+                    Log.d(TAG, "Ally found in the ${direction.javaClass.simpleName} position: ${it.position}")
                 }
     }
 
     private fun getNeighbors(position: Position): List<Cell> {
         val (X, Y) = position
-        var cellList = mutableListOf<Cell>()
-        (maxOf(0, X - searchDistance)..X + searchDistance).forEach { xPos ->
-            (maxOf(0, Y - searchDistance)..Y + searchDistance)
+        val cellList = mutableListOf<Cell>()
+        (maxOf(0, X - searchDistance)..minOf(X + searchDistance, board.columnSize - 1)).forEach { xPos ->
+            (maxOf(0, Y - searchDistance)..minOf(Y + searchDistance, board.rowSize - 1))
                     .filter { yPos ->
                         !(xPos == X && yPos == Y)
                     }
@@ -45,7 +46,7 @@ class GameManager(private val board: Board) {
                 otherX > thisX -> Direction.East
                 else -> Direction.West
             }
-            otherY > thisY -> //We're in the north
+            otherY < thisY -> //We're in the north
                 when{
                     otherX > thisX -> Direction.NorthEast
                     otherX < thisX -> Direction.NorthWest
