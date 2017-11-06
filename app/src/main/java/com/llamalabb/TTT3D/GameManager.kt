@@ -13,8 +13,8 @@ class GameManager(private val board: Board) {
 
     fun getAlliesInSearchArea(position: Position, type: CellType) {
         getNeighbors(position)
-                .filter {it.type == type}
-                .forEach{
+                .filter { it.type == type }
+                .forEach {
                     val direction = getDirectionOfPositionFromPosition(position, it.position)
                     Timber.d("Ally found in the ${direction.javaClass.simpleName} position: ${it.position}")
                 }
@@ -37,22 +37,37 @@ class GameManager(private val board: Board) {
         return cellList
     }
 
-    private fun getDirectionOfPositionFromPosition(thisPosition: Position, otherPosition: Position) : Direction {
-       val (thisX, thisY) = thisPosition
-       val (otherX, otherY) = otherPosition
+    private fun runCheckInDirection(position: Position, direction: Direction, cellType: CellType) {
+
+    }
+
+    private fun getRelativePositionOfDirection(direction: Direction) {
+        val relativePosition = when (direction) {
+            is Direction.North -> Position(0, 1)
+            is Direction.East -> Position(0, 1)
+            is Direction.South -> Position(0, 1)
+            is Direction.West -> Position(0, 1)
+
+        }
+    }
+
+
+    private fun getDirectionOfPositionFromPosition(thisPosition: Position, otherPosition: Position): Direction {
+        val (thisX, thisY) = thisPosition
+        val (otherX, otherY) = otherPosition
         return when {
             otherY == thisY -> when {
                 otherX > thisX -> Direction.East
                 else -> Direction.West
             }
             otherY < thisY -> //We're in the north
-                when{
+                when {
                     otherX > thisX -> Direction.NorthEast
                     otherX < thisX -> Direction.NorthWest
                     else -> Direction.North
                 }
             else -> //We're in the south
-                when{
+                when {
                     otherX > thisX -> Direction.SouthEast
                     otherX < thisX -> Direction.SouthWest
                     else -> Direction.South

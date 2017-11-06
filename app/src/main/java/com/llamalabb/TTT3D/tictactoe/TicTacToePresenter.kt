@@ -2,9 +2,7 @@ package com.llamalabb.TTT3D.tictactoe
 
 import com.llamalabb.TTT3D.GameManager
 import com.llamalabb.TTT3D.models.Board
-
 import com.llamalabb.TTT3D.models.CellType
-
 import com.llamalabb.TTT3D.models.Position
 
 /**
