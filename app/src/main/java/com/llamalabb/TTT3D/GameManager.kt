@@ -4,6 +4,7 @@ import android.util.Log
 import com.llamalabb.TTT3D.models.Board
 import com.llamalabb.TTT3D.models.Cell
 import com.llamalabb.TTT3D.models.Position
+import java.util.Locale.filter
 
 /**
  * Created by brandon on 11/4/17.
@@ -16,22 +17,19 @@ class GameManager(private val board: Board) {
 
     fun getNeighbors(position: Position) : List<Cell>{
         val (X, Y) = position
-        val startX = X - searchDistance
-        val startY = Y - searchDistance
-        val endX = X + searchDistance
-        val endY = Y + searchDistance
-        if (searchDistance > 0) {
-            for (xPos in maxOf(0, startX)..endX) {
-                (maxOf(0, startY)..endY)
-                        .filter { yPos ->
-                            !(xPos == X && yPos == Y)
-                        }
-                        .forEach { yPos ->
-                            Log.d(TAG, "Scanning position - X:$xPos Y:$yPos")
-                            board.getCell(Position(xPos, yPos))
-                        }
-            }
+        var cellList = mutableListOf<Cell>()
+        (maxOf(0, X - searchDistance)..X + searchDistance).forEach { xPos ->
+                (maxOf(0, Y - searchDistance)..Y + searchDistance)
+                    .filter { yPos ->
+                        !(xPos == X && yPos == Y)
+                    }
+                    .forEach { yPos ->
+                        Log.d(TAG, "Scanning position - X:$xPos Y:$yPos")
+                        cellList.add(board.getCell(Position(xPos, yPos)))
+                    }
         }
+
+
     }
 
 
