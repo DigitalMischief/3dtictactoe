@@ -1,10 +1,7 @@
 package com.llamalabb.TTT3D
 
 import android.util.Log
-import com.llamalabb.TTT3D.models.Board
-import com.llamalabb.TTT3D.models.Cell
-import com.llamalabb.TTT3D.models.CellType
-import com.llamalabb.TTT3D.models.Position
+import com.llamalabb.TTT3D.models.*
 
 /**
  * Created by brandon on 11/4/17.
@@ -38,5 +35,28 @@ class GameManager(private val board: Board) {
         }
 
         return cellList
+    }
+
+    private fun getDirectionOfPositionFromPosition(thisPosition: Position, otherPosition: Position) : Direction {
+       val (thisX, thisY) = thisPosition
+       val (otherX, otherY) = otherPosition
+        return when {
+            otherY == thisY -> when {
+                otherX > thisX -> Direction.East
+                else -> Direction.West
+            }
+            otherY > thisY -> //We're in the north
+                when{
+                    otherX > thisX -> Direction.NorthEast
+                    otherX < thisX -> Direction.NorthWest
+                    else -> Direction.North
+                }
+            else -> //We're in the south
+                when{
+                    otherX > thisX -> Direction.SouthEast
+                    otherX < thisX -> Direction.SouthWest
+                    else -> Direction.South
+                }
+        }
     }
 }
