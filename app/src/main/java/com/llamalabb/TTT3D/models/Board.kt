@@ -5,25 +5,24 @@ package com.llamalabb.TTT3D.models
  */
 data class Board(var columnSize: Int = 3, var rowSize: Int = 3) {
 
-    private lateinit var cellMatrix: Array<Array<Cell?>>
+    private lateinit var cellMatrix: ArrayList<ArrayList<Cell>>
 
     init{
         create()
     }
 
     fun create(){
-        cellMatrix = Array(columnSize,{ arrayOfNulls<Cell>(rowSize)})
-        for(i in 0 until columnSize -1){
-            var boardRow = Array<Cell?>(rowSize, {null})
-            for(j in 0 until boardRow.size){
-                boardRow[j] = Cell(Position(i, j))
+        cellMatrix = ArrayList()
+        for(i in 0 until columnSize - 1){
+            val boardRow = ArrayList<Cell>()
+            for(j in 0 until rowSize - 1){
+                boardRow.add(Cell(Position(i, j)))
             }
-
-            cellMatrix[i] = boardRow
+            cellMatrix.add(boardRow)
         }
     }
 
-    fun getCell(position: Position) = cellMatrix[position.X][position.Y]
+    fun getCell(position: Position) = cellMatrix[position.Y][position.X]
 
     fun getCellCount() = columnSize*rowSize
 
