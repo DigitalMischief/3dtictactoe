@@ -1,7 +1,7 @@
 package com.llamalabb.TTT3D.tictactoe
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.llamalabb.TTT3D.R
@@ -17,6 +17,7 @@ class TicTacToeActivity : AppCompatActivity(), TicTacToeContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tic_tac_toe)
+
 
         board_recycler_view.apply{
             adapter = recyclerAdapter
