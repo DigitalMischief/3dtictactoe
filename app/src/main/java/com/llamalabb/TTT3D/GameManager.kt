@@ -1,7 +1,7 @@
 package com.llamalabb.TTT3D
 
-import android.util.Log
 import com.llamalabb.TTT3D.models.*
+import timber.log.Timber
 
 /**
  * Created by brandon on 11/4/17.
@@ -10,14 +10,13 @@ import com.llamalabb.TTT3D.models.*
 class GameManager(private val board: Board) {
 
     private val searchDistance = 1
-    private val TAG = this.javaClass.simpleName
 
     fun getAlliesInSearchArea(position: Position, type: CellType) {
         getNeighbors(position)
                 .filter {it.type == type}
                 .forEach{
                     val direction = getDirectionOfPositionFromPosition(position, it.position)
-                    Log.d(TAG, "Ally found in the ${direction.javaClass.simpleName} position: ${it.position}")
+                    Timber.d("Ally found in the ${direction.javaClass.simpleName} position: ${it.position}")
                 }
     }
 
@@ -30,7 +29,7 @@ class GameManager(private val board: Board) {
                         !(xPos == X && yPos == Y)
                     }
                     .forEach { yPos ->
-                        Log.d(TAG, "Scanning position - X:$xPos Y:$yPos")
+                        Timber.d("Scanning position - X:$xPos Y:$yPos")
                         cellList.add(board.getCell(Position(xPos, yPos)))
                     }
         }
