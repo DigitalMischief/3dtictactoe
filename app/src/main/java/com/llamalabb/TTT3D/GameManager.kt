@@ -47,7 +47,7 @@ class GameManager(private val board: Board) {
             is Direction.East -> Position(0, 1)
             is Direction.South -> Position(0, 1)
             is Direction.West -> Position(0, 1)
-
+            else -> Position(0, 0)
         }
     }
 
