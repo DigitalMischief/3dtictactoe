@@ -15,8 +15,8 @@ data class Board(var columnSize: Int = 3, var rowSize: Int = 3) {
         cellMatrix = ArrayList()
         for(i in 0 until columnSize - 1){
             val boardRow = ArrayList<Cell>()
-            for(j in 0 until rowSize - 1){
-                boardRow.add(Cell(Position(i, j)))
+            (0 until rowSize - 1).mapTo(boardRow) {
+                Cell(type = (if (Math.random() > .5) CellType.X else CellType.O), position = Position(i, it))
             }
             cellMatrix.add(boardRow)
         }
