@@ -3,21 +3,28 @@ package com.llamalabb.TTT3D.models
 /**
  * Created by andy on 11/4/17.
  */
-data class Board(val boardSize: Int) {
+data class Board(var columnSize: Int = 3, var rowSize: Int = 3) {
 
-    lateinit var board: Array<Array<Cell?>>
+    private lateinit var cellMatrix: Array<Array<Cell?>>
 
+    init{
+        create()
+    }
 
-    fun createBoard(){
-        for(i in 0..boardSize -1){
-            var boardRow = Array<Cell?>(boardSize, {null})
-            for(j in 0..boardRow.size -1){
+    fun create(){
+        cellMatrix = Array(columnSize,{ arrayOfNulls<Cell>(rowSize)})
+        for(i in 0 until columnSize -1){
+            var boardRow = Array<Cell?>(rowSize, {null})
+            for(j in 0 until boardRow.size){
                 boardRow[j] = Cell(Position(i, j))
             }
 
-
-
-            board[i] = boardRow
+            cellMatrix[i] = boardRow
         }
     }
+
+    fun getCell(position: Position) = cellMatrix[position.X][position.Y]
+
+    fun getCellCount() = columnSize*rowSize
+
 }
