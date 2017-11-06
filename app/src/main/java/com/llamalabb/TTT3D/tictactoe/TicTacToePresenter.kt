@@ -16,8 +16,10 @@ class TicTacToePresenter(var view: TicTacToeContract.View) : TicTacToeContract.P
     lateinit var gameManager: GameManager
     lateinit var board: Board
 
+    private val turnCount = 0
+
     override fun onStart() {
-        board = Board()
+        board = Board(5,5)
         createGameManager()
         view.showBoard(board)
     }
@@ -35,17 +37,17 @@ class TicTacToePresenter(var view: TicTacToeContract.View) : TicTacToeContract.P
     override fun handleClickOnIndex(index: Int) {
 
 
-        val position = convertIndexToPosition(index)
+        val position = board.convertIndexToPosition(index)
 
-         board.getCell(position)?.let{
+         board.getCell(position).let{
              if (it.isAvailable()){
-                 it.type = CellType.X
+                 it.type = if (turnCount % 2 == 0) CellType.X else CellType.O
                  view.setCellType(index, it.type.toString())
+                 turnCount.inc()
              } else {
                  view.showPlayerFault()
              }
          }
-
     }
 
     private fun runTest() {
@@ -59,18 +61,5 @@ class TicTacToePresenter(var view: TicTacToeContract.View) : TicTacToeContract.P
         }
     }
 
-    private fun convertIndexToPosition(index: Int) : Position{
-
-        val pos = index + 1
-        val span = board.rowSize
-        val col = pos % span
-        val row = Math.floor((pos.toDouble())/(span.toDouble())).toInt()
-
-        return when (col) {
-            0 -> Position(span, row)
-            else -> Position( col - 1, row)
-        }
-
-    }
 
 }

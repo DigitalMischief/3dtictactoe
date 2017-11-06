@@ -17,7 +17,7 @@ data class Board(var columnSize: Int = 3, var rowSize: Int = 3) {
         for(i in 0 until columnSize){
             val boardRow = ArrayList<Cell>()
             (0 until rowSize).mapTo(boardRow) {
-                Cell(type = (if (Math.random() > .5) CellType.X else CellType.O), position = Position(i, it))
+                Cell( position = Position(i, it))
             }
             cellMatrix.add(boardRow)
         }
@@ -30,6 +30,16 @@ data class Board(var columnSize: Int = 3, var rowSize: Int = 3) {
         } catch(e: ArrayIndexOutOfBoundsException){
             throw Exception("Off the board")
         }
+    }
+
+    fun convertIndexToPosition(index: Int) : Position{
+
+        val span = rowSize
+        val col = index % span
+        val row = Math.floor(index.toDouble()/span.toDouble()).toInt()
+
+        return Position( col, row)
+
     }
 
     fun getCellCount() = columnSize*rowSize
