@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import com.llamalabb.TTT3D.R
 import com.llamalabb.TTT3D.CellClickListener
@@ -44,13 +45,13 @@ class TicTacToeActivity : AppCompatActivity(), TicTacToeContract.View {
     }
 
     override fun showPlayerFault(){
-        Utils.showMessageShort("Naw yo, watch doin checker?")
+        Utils.showMessageShort(this,"watch doin checker?")
     }
 
     private fun setCellClickListener(view: RecyclerView){
         val itemClickListener = object : CellClickListener.OnItemClickListener{
             override fun onItemClick(view: View, position: Int) {
-                presenter.handleClickOnIndex(position)
+                d
             }
             override fun onLongItemClick(view: View, position: Int) {
 

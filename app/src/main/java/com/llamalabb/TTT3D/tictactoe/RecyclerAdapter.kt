@@ -1,5 +1,6 @@
 package com.llamalabb.TTT3D.tictactoe
 
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -20,14 +21,19 @@ class RecyclerAdapter(board: Board) : RecyclerView.Adapter<RecyclerAdapter.ViewH
         }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
-         var cellType: TextView = view.findViewById(R.id.cell_type_text)
+        var cellTypeText: TextView = view.findViewById(R.id.cell_type_text)
+        var cell: CardView = view.findViewById(R.id.cell_card)
     }
     override fun getItemCount(): Int {
         return board.getCellCount()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.cellTypeText.text = board.getCell(board.convertIndexToPosition(position)).getTypeAsString()
 
+        holder.cell.setOnClickListener {
+            board.getCell(board.convertIndexToPosition(position)).handleClickByPlayer()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder{
