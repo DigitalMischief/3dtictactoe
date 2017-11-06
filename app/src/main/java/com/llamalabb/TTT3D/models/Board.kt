@@ -22,8 +22,23 @@ data class Board(var columnSize: Int = 3, var rowSize: Int = 3) {
         }
     }
 
-    fun getCell(position: Position) = cellMatrix[position.Y][position.X]
+    fun getCell(position: Position) : Cell? {
+
+        if(position.Y > rowSize || position.X > columnSize) return null
+
+        return cellMatrix[position.Y][position.X]
+
+    }
+
+    fun isCellAvailable(cell: Cell) : Boolean{
+        if( cell == null ) //todo: change to check enum
+            return true
+        return false
+    }
 
     fun getCellCount() = columnSize*rowSize
 
 }
+
+
+

@@ -32,9 +32,6 @@ class GameManager(private val board: Board) {
                         }
             }
         }
+        return emptyList()
     }
-
-
-
-
 }
