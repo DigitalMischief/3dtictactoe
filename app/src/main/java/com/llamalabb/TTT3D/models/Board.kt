@@ -11,7 +11,7 @@ data class Board(var columnSize: Int = 3, var rowSize: Int = 3) {
         create()
     }
 
-    fun create(){
+    private fun create(){
         cellMatrix = ArrayList()
 
         for(i in 0 until columnSize){

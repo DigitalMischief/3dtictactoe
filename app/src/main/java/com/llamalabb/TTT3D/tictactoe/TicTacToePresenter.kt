@@ -9,12 +9,14 @@ import com.llamalabb.TTT3D.models.Position
  * Created by andy on 11/4/17.
  */
 
-class TicTacToePresenter(var view: TicTacToeContract.View) : TicTacToeContract.Presenter, TicTacToeContract.AdapterPresenter {
+class TicTacToePresenter(var view: TicTacToeContract.View)
+    : TicTacToeContract.Presenter,
+        TicTacToeContract.AdapterPresenter {
 
     lateinit var gameManager: GameManager
     lateinit var board: Board
 
-    private var turnCount = 0
+    var turnCount = 0
 
     override fun onStart() {
         board = Board(3,3)
@@ -29,9 +31,8 @@ class TicTacToePresenter(var view: TicTacToeContract.View) : TicTacToeContract.P
     override fun getSpanSize() : Int = board.rowSize
 
     override fun getPlayerSymbol(): CellType {
-        turnCount.inc()
+        turnCount+=1
         return if (turnCount % 2 == 0) CellType.X else CellType.O
-
     }
 
     override fun onBindCellAtPosition(position: Int, cellView: TicTacToeContract.CellView) {
@@ -47,14 +48,14 @@ class TicTacToePresenter(var view: TicTacToeContract.View) : TicTacToeContract.P
     override fun handleClickOnIndex(index: Int) {
         val position = board.convertIndexToPosition(index)
 
-         board.getCell(position).let{
-             if (it.isAvailable()){
-                 it.type = getPlayerSymbol()
-                 view.refreshBoard()
-             } else {
-                 view.showPlayerFault()
-             }
-         }
+        board.getCell(position).let{
+            if (it.isAvailable()){
+                it.type = getPlayerSymbol()
+                view.refreshBoard()
+            } else {
+                view.showPlayerFault()
+            }
+        }
     }
 
     private fun runTest() {

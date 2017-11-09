@@ -12,7 +12,8 @@ import timber.log.Timber
 /**
  * Created by andy on 11/5/17.
  */
-class BoardRecyclerAdapter(val presenter: TicTacToeContract.AdapterPresenter) : RecyclerView.Adapter<BoardRecyclerAdapter.CellViewHolder>() {
+class BoardRecyclerAdapter(private val presenter: TicTacToeContract.AdapterPresenter)
+    : RecyclerView.Adapter<BoardRecyclerAdapter.CellViewHolder>() {
 
     override fun getItemCount(): Int {
         return presenter.getCellCount()
@@ -32,8 +33,6 @@ class BoardRecyclerAdapter(val presenter: TicTacToeContract.AdapterPresenter) : 
 
         return CellViewHolder(view)
     }
-
-
 
     class CellViewHolder(view: View) : RecyclerView.ViewHolder(view), TicTacToeContract.CellView{
         private var cellTypeText: TextView = view.findViewById(R.id.cell_type_text)

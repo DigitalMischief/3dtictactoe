@@ -3,9 +3,6 @@ package com.llamalabb.TTT3D.tictactoe
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.view.View
-import com.llamalabb.TTT3D.CellClickListener
 import com.llamalabb.TTT3D.R
 import com.llamalabb.TTT3D.models.Board
 import com.llamalabb.TTT3D.util.Utils
@@ -26,7 +23,6 @@ class TicTacToeActivity : AppCompatActivity(), TicTacToeContract.View {
         board_recycler_view.apply{
             adapter = recyclerAdapter
             layoutManager = GridLayoutManager(context, 3)
-            setCellClickListener(this)
         }
 
         presenter.onStart()
@@ -50,20 +46,4 @@ class TicTacToeActivity : AppCompatActivity(), TicTacToeContract.View {
     override fun showPlayerFault(){
         Utils.showMessageShort(this,"watch doin checker?")
     }
-
-    private fun setCellClickListener(view: RecyclerView){
-        val itemClickListener = object : CellClickListener.OnItemClickListener{
-            override fun onItemClick(view: View, position: Int) {
-
-            }
-            override fun onLongItemClick(view: View, position: Int) {
-
-            }
-        }
-
-        view.addOnItemTouchListener(CellClickListener(this, view, itemClickListener))
-    }
-
-
-
 }
