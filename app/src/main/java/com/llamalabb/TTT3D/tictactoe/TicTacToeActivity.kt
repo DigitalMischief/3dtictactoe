@@ -3,11 +3,7 @@ package com.llamalabb.TTT3D.tictactoe
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.util.Log
-import android.view.View
 import com.llamalabb.TTT3D.R
-import com.llamalabb.TTT3D.CellClickListener
 import com.llamalabb.TTT3D.models.Board
 import com.llamalabb.TTT3D.util.Utils
 import kotlinx.android.synthetic.main.activity_tic_tac_toe.*
@@ -17,7 +13,7 @@ class TicTacToeActivity : AppCompatActivity(), TicTacToeContract.View {
     override var presenter: TicTacToeContract.Presenter = TicTacToePresenter(this)
 
 
-    private val recyclerAdapter = RecyclerAdapter(Board(0))
+    private val recyclerAdapter = BoardRecyclerAdapter(presenter)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +23,6 @@ class TicTacToeActivity : AppCompatActivity(), TicTacToeContract.View {
         board_recycler_view.apply{
             adapter = recyclerAdapter
             layoutManager = GridLayoutManager(context, 3)
-            setCellClickListener(this)
         }
 
         presenter.onStart()
@@ -37,7 +32,11 @@ class TicTacToeActivity : AppCompatActivity(), TicTacToeContract.View {
     override fun showBoard(board: Board) {
         board_recycler_view.layoutManager =
                 GridLayoutManager(this, presenter.getSpanSize())
-        recyclerAdapter.board = board
+        refreshBoard()
+    }
+
+    override fun refreshBoard() {
+        recyclerAdapter.notifyDataSetChanged()
     }
 
     override fun setCellType( index: Int, type: String ){
@@ -47,20 +46,4 @@ class TicTacToeActivity : AppCompatActivity(), TicTacToeContract.View {
     override fun showPlayerFault(){
         Utils.showMessageShort(this,"watch doin checker?")
     }
-
-    private fun setCellClickListener(view: RecyclerView){
-        val itemClickListener = object : CellClickListener.OnItemClickListener{
-            override fun onItemClick(view: View, position: Int) {
-                d
-            }
-            override fun onLongItemClick(view: View, position: Int) {
-
-            }
-        }
-
-        view.addOnItemTouchListener(CellClickListener(this, view, itemClickListener))
-    }
-
-
-
 }
