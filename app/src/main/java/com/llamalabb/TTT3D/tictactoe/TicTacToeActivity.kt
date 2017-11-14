@@ -12,8 +12,25 @@ import kotlinx.android.synthetic.main.cell_layout.view.*
 class TicTacToeActivity : AppCompatActivity(), TicTacToeContract.View {
     override var presenter: TicTacToeContract.Presenter = TicTacToePresenter(this)
 
+    private val boardListener = object : TicTacToeContract.BoardListener {
+        override fun cellClickListener(index: Int) {
+            presenter.handleClickOnIndex(index)
+        }
 
-    private val recyclerAdapter = BoardRecyclerAdapter(presenter)
+        override fun cellLongClickListener(index: Int) {
+
+        }
+
+        override fun cellBinding(index: Int, cellView: TicTacToeContract.CellView){
+            presenter.onBindCellAtPosition(index, cellView)
+        }
+
+        override fun getCellCount() : Int = presenter.getCellCount()
+
+    }
+
+
+    private val recyclerAdapter = BoardRecyclerAdapter(boardListener)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
