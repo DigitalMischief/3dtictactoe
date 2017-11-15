@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.llamalabb.a3dtictactoe", appContext.packageName)
+        assertEquals("com.llamalabb.TTT3D", appContext.packageName)
     }
 }

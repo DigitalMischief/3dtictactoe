@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.llamalabb.a3dtictactoe"
+        applicationId "com.llamalabb.TTT3D"
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
