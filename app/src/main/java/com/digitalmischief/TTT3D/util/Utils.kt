@@ -1,6 +1,5 @@
-package com.llamalabb.TTT3D.util
+package com.digitalmischief.TTT3D.util
 
-import android.app.Application
 import android.content.Context
 import android.widget.Toast
 

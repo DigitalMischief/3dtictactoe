@@ -1,4 +1,4 @@
-package com.llamalabb.TTT3D
+package com.digitalmischief.TTT3D
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
