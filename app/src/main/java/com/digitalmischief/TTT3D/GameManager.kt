@@ -11,7 +11,16 @@ class GameManager(private val board: Board) {
 
     private val searchDistance = 1
 
-    fun getAlliesInSearchArea(position: Position, type: CellType) {
+    fun getAlliesAroundPosition(position: Position) {
+        board.getCell(position).let {
+            val type = it.type
+            if (type != null){
+                getAlliesWithPositionAndType(position, type)
+            }
+        }
+    }
+
+    private fun getAlliesWithPositionAndType(position: Position, type: CellType) {
         getNeighbors(position)
                 .filter { it.type == type }
                 .forEach {

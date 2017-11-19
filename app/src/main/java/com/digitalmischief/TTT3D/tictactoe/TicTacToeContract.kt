@@ -21,6 +21,7 @@ interface TicTacToeContract {
         fun createGameManager()
         fun getSpanSize() : Int
         fun getPlayerSymbol() : CellType
+        fun resetGame()
     }
 
     interface AdapterPresenter {

@@ -19,19 +19,28 @@ class TicTacToePresenter(var view: TicTacToeContract.View)
     var turnCount = 0
 
     override fun onStart() {
-        board = Board(3,3)
+        board = Board(3, 3)
         createGameManager()
-        view.showBoard(board)
+        showBoard()
     }
 
     override fun createGameManager() {
         gameManager = GameManager(board)
     }
 
-    override fun getSpanSize() : Int = board.rowSize
+    override fun resetGame() {
+        board = Board()
+        showBoard()
+    }
+
+    private fun showBoard() {
+        view.showBoard(board)
+    }
+
+    override fun getSpanSize(): Int = board.rowSize
 
     override fun getPlayerSymbol(): CellType {
-        turnCount+=1
+        turnCount += 1
         return if (turnCount % 2 == 0) CellType.X else CellType.O
     }
 
@@ -48,14 +57,16 @@ class TicTacToePresenter(var view: TicTacToeContract.View)
     override fun handleClickOnIndex(index: Int) {
         val position = board.convertIndexToPosition(index)
 
-        board.getCell(position).let{
-            if (it.isAvailable()){
+        board.getCell(position).let {
+            if (it.isAvailable()) {
                 it.type = getPlayerSymbol()
                 view.refreshBoard()
             } else {
                 view.showPlayerFault()
             }
         }
+
+        gameManager.getAlliesAroundPosition(position)
     }
 
     private fun runTest() {
@@ -65,7 +76,7 @@ class TicTacToePresenter(var view: TicTacToeContract.View)
         val ourCell = testBoard.getCell(position)
         val ourType = ourCell.type
         ourType?.let {
-            manager.getAlliesInSearchArea(position, ourType)
+            //            manager.getAlliesInSearchArea(position, ourType)
         }
     }
 
