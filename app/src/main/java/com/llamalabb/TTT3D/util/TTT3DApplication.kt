@@ -1,4 +1,4 @@
-package com.llamalabb.TTT3D.tictactoe
+package com.llamalabb.TTT3D.util
 
 import android.app.Application
 import com.llamalabb.TTT3D.BuildConfig

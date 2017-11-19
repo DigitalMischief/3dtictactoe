@@ -10,8 +10,7 @@ import com.llamalabb.TTT3D.models.Position
  */
 
 class TicTacToePresenter(var view: TicTacToeContract.View)
-    : TicTacToeContract.Presenter,
-        TicTacToeContract.AdapterPresenter {
+    : TicTacToeContract.Presenter{
 
     lateinit var gameManager: GameManager
     lateinit var board: Board

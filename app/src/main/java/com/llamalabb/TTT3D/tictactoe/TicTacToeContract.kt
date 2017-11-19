@@ -17,13 +17,10 @@ interface TicTacToeContract {
         fun showPlayerFault()
     }
 
-    interface Presenter: BasePresenter, AdapterPresenter {
+    interface Presenter: BasePresenter{
         fun createGameManager()
         fun getSpanSize() : Int
         fun getPlayerSymbol() : CellType
-    }
-
-    interface AdapterPresenter {
         fun onBindCellAtPosition(position: Int, cellView: CellView)
         fun handleClickOnIndex(index: Int)
         fun getCellCount(): Int
@@ -31,5 +28,12 @@ interface TicTacToeContract {
 
     interface CellView {
         fun displayCellType(type: String)
+    }
+
+    interface BoardListener {
+        fun cellClickListener(index: Int)
+        fun cellLongClickListener(index: Int)
+        fun getCellCount(): Int
+        fun cellBinding(index: Int, cellView: CellView)
     }
 }

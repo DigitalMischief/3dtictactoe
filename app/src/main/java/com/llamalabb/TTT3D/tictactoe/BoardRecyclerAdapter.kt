@@ -12,18 +12,19 @@ import timber.log.Timber
 /**
  * Created by andy on 11/5/17.
  */
-class BoardRecyclerAdapter(private val presenter: TicTacToeContract.AdapterPresenter)
+class BoardRecyclerAdapter(private val boardListener: TicTacToeContract.BoardListener
+)
     : RecyclerView.Adapter<BoardRecyclerAdapter.CellViewHolder>() {
 
     override fun getItemCount(): Int {
-        return presenter.getCellCount()
+        return boardListener.getCellCount()
     }
 
     override fun onBindViewHolder(holder: CellViewHolder, position: Int) {
-        presenter.onBindCellAtPosition(position, holder)
+        boardListener.cellBinding(position, holder)
         holder.cell.setOnClickListener {
             Timber.d("Cell clicked at adapter position $position")
-            presenter.handleClickOnIndex(position)
+            boardListener.cellClickListener(position)
         }
     }
 
