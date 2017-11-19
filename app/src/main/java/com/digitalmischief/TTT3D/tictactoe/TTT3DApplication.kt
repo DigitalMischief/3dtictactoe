@@ -1,7 +1,7 @@
-package com.llamalabb.TTT3D.tictactoe
+package com.digitalmischief.TTT3D.tictactoe
 
 import android.app.Application
-import com.llamalabb.TTT3D.BuildConfig
+import com.digitalmischief.TTT3D.BuildConfig
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 

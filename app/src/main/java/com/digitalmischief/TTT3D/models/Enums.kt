@@ -1,4 +1,4 @@
-package com.llamalabb.TTT3D.models
+package com.digitalmischief.TTT3D.models
 
 /**
  * Created by brandon on 11/4/17.

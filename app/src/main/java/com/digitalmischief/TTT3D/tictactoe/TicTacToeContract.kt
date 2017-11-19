@@ -1,9 +1,9 @@
-package com.llamalabb.TTT3D.tictactoe
+package com.digitalmischief.TTT3D.tictactoe
 
-import com.llamalabb.TTT3D.BasePresenter
-import com.llamalabb.TTT3D.BaseView
-import com.llamalabb.TTT3D.models.Board
-import com.llamalabb.TTT3D.models.CellType
+import com.digitalmischief.TTT3D.BasePresenter
+import com.digitalmischief.TTT3D.BaseView
+import com.digitalmischief.TTT3D.models.Board
+import com.digitalmischief.TTT3D.models.CellType
 
 /**
  * Created by andy on 11/4/17.

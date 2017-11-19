@@ -1,11 +1,11 @@
-package com.llamalabb.TTT3D.tictactoe
+package com.digitalmischief.TTT3D.tictactoe
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
-import com.llamalabb.TTT3D.R
-import com.llamalabb.TTT3D.models.Board
-import com.llamalabb.TTT3D.util.Utils
+import com.digitalmischief.TTT3D.R
+import com.digitalmischief.TTT3D.models.Board
+import com.digitalmischief.TTT3D.util.Utils
 import kotlinx.android.synthetic.main.activity_tic_tac_toe.*
 import kotlinx.android.synthetic.main.cell_layout.view.*
 

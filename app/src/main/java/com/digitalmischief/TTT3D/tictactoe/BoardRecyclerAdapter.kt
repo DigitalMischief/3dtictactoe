@@ -1,4 +1,4 @@
-package com.llamalabb.TTT3D.tictactoe
+package com.digitalmischief.TTT3D.tictactoe
 
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.llamalabb.TTT3D.R
+import com.digitalmischief.TTT3D.R
 import timber.log.Timber
 
 /**

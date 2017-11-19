@@ -1,4 +1,4 @@
-package com.llamalabb.TTT3D
+package com.digitalmischief.TTT3D
 
 import org.junit.Test
 

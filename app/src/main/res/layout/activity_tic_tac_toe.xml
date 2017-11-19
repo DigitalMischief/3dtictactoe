@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.llamalabb.TTT3D.tictactoe.TicTacToeActivity">
+    tools:context="com.digitalmischief.TTT3D.tictactoe.TicTacToeActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/board_recycler_view"
