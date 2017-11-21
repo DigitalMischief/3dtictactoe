@@ -215,45 +215,21 @@ class TicTacToeActivity : AppCompatActivity(), TicTacToeContract.View {
                             }
                         }
                     }
-        } ?: Utils.showMessageShort(this, "No use logged in")
+        } ?: Utils.showMessageShort(this, "No one logged in")
 
-    }
-
-    fun getNextParticipantId(): String? {
-
-
-        val myParticipantId = match?.getParticipantId(playerId)
-
-        val participantIds = match?.participantIds
-
-        var desiredIndex = -1
-        participantIds?.let { pids ->
-            for (i in 0 until pids.size) {
-                if (pids[i] == myParticipantId)
-                    desiredIndex = i + 1
-            }
-
-            if (desiredIndex < pids.size)
-                return pids[desiredIndex]
-
-            match?.let { m ->
-                if (m.availableAutoMatchSlots <= 0)
-                    return pids[0]
-                else
-                    return null
-            }
-
-        }
-
-        return null
     }
 
     override fun takeTurn(){
 
         match?.let{
+
+            val myParticipantId = it.getParticipantId(playerId)
+            var index = 0
+            if(myParticipantId == it.participantIds[0]) index += 1
             turnBasedMultiClient.takeTurn(it.matchId,
-                    presenter.serializeBoard(), opponentId)
+                    presenter.serializeBoard(), it.participantIds[index])
             updateMatch(it)
+
         }
 
     }
@@ -320,7 +296,6 @@ class TicTacToeActivity : AppCompatActivity(), TicTacToeContract.View {
         if (requestCode == RC_SIGN_IN || requestCode == RC_FIND_GAME_LOGIN) {
             val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
             if (result.isSuccess) {
-                // The signed in account is stored in the result.
                 val signedInAccount = result.signInAccount
                 showSignOutButton()
 
@@ -337,10 +312,8 @@ class TicTacToeActivity : AppCompatActivity(), TicTacToeContract.View {
                         .setNeutralButton(android.R.string.ok, null).show()
             }
         } else if (requestCode == RC_LOOK_AT_MATCHES) {
-            // Returning from the 'Select Match' dialog
 
             if (resultCode != Activity.RESULT_OK) {
-                //logBadActivityResult(requestCode, resultCode, "User cancelled returning from the 'Select Match' dialog.")
                 return
             }
 
