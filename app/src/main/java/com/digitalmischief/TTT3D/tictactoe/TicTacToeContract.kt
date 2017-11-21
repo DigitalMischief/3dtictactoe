@@ -15,12 +15,16 @@ interface TicTacToeContract {
         fun refreshBoard()
         fun setCellType(index: Int, type: String)
         fun showPlayerFault()
+        fun takeTurn()
+        fun isMyTurn(): Boolean
     }
 
     interface Presenter: BasePresenter, AdapterPresenter {
         fun createGameManager()
         fun getSpanSize() : Int
         fun getPlayerSymbol() : CellType
+        fun serializeBoard(): ByteArray?
+        fun deserializeBoard(byteArray: ByteArray)
     }
 
     interface AdapterPresenter {
